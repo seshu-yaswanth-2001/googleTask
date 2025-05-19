@@ -1,0 +1,84 @@
+/* NavBar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  z-index: 1001;
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+}
+
+.menuLogo {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.mobileLogo {
+  display: none;
+}
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  cursor: pointer;
+}
+.menu span {
+  width: 20px;
+  height: 2px;
+  background-color: #e3e3e3;
+  border-radius: 5px;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.logoImg {
+  width: 40px;
+}
+.logoText {
+  font-size: 22px;
+  font-weight: 500;
+}
+.profile {
+  border: 2px solid #e3e3e3;
+  padding: 10px;
+  border-radius: 50%;
+}
+.profile span {
+  font-weight: 600;
+}
+@media (max-width: 600px) {
+  .menu {
+    gap: 5px;
+  }
+  .logo {
+    display: none;
+  }
+  .mobileLogo {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .mobileLogoImg {
+    width: 35px;
+  }
+  .mobileLogoText {
+    font-size: 20px;
+    font-weight: 600;
+  }
+  .profile {
+    border: 2px solid #e3e3e3;
+    padding: 5px 8px;
+    border-radius: 50%;
+  }
+  .profile span {
+    font-size: 12px;
+  }
+}

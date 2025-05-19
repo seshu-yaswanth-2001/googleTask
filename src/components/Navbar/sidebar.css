@@ -1,0 +1,55 @@
+.sidebar {
+  position: fixed;
+  top: 64px;
+  left: -230px;
+  width: 200px;
+  height: 100vh;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  z-index: 1001;
+  transition: left 0.3s ease-in-out;
+}
+.sidebar.open {
+  left: 0px;
+}
+.addTask {
+  align-self: flex-start;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  background: #37393b;
+  color: #e3e3e3;
+  padding: 10px 20px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.tasks {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.taskButton {
+  border: none;
+  outline: none;
+  border-radius: 50px;
+  padding: 5px 10px;
+  background: transparent;
+  color: #e3e3e3;
+  text-align: start;
+  cursor: pointer;
+}
+.taskButton:hover {
+  background-color: #37393b;
+}
+.taskButton:focus {
+  outline: 2px solid #005f99;
+}
+.taskButton.active {
+  background: #004a77;
+}
