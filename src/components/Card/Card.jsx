@@ -1,28 +1,56 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { TaskContext } from "../Context/TaskContext";
+import Form from "./Form/Form";
 
-const Card = ({ onClose }) => {
-  const { inputTask, setInputTask } = useContext(TaskContext);
+import "./card.css";
+
+const Card = ({ closeForm }) => {
+  const { inputTask, setInputTask, tasks, setTasks, countId, setCountId } =
+    useContext(TaskContext);
+
+  useEffect(() => {
+    const handlePress = (e) => {
+      if (e.key === "Enter" && inputTask.title && inputTask.description) {
+        handleSubmit();
+      }
+    };
+    document.addEventListener("keydown", handlePress);
+    return () => {
+      document.removeEventListener("keydown", handlePress);
+    };
+  }, [inputTask]);
+
   const handleSubmit = () => {
-    onClose();
+    if (inputTask.title && inputTask.description) {
+      const date = new Date(Date.now());
+      const newTask = {
+        id: countId,
+        dateCreated: `${date.getFullYear()}/${String(
+          date.getMonth() + 1
+        ).padStart(2, "0")}/${String(date.getDate()).padStart(2, "0")}`,
+        ...inputTask,
+      };
+      setTasks((prevTasks) => [...prevTasks, newTask]);
+      setInputTask({ title: "", description: "" });
+      setCountId(countId + 1);
+      closeForm();
+    }
   };
+
+  useEffect(() => {
+    const storedTasks = JSON.parse(localStorage.getItem("tasks"));
+    if (storedTasks) {
+      setTasks(storedTasks);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
 
   return (
     <div className="form">
-      <input
-        type="text"
-        placeholder="title"
-        value={inputTask.title}
-        onChange={(e) => setInputTask({ ...inputTask, title: e.target.value })}
-      />
-      <textarea
-        rows="2"
-        placeholder="description"
-        value={inputTask.description}
-        onChange={(e) =>
-          setInputTask({ ...inputTask, description: e.target.value })
-        }
-      ></textarea>
+      <Form handleSubmit={handleSubmit} />
     </div>
   );
 };

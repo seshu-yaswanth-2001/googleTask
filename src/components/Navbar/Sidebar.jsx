@@ -33,10 +33,10 @@ const Sidebar = ({
   };
 
   return (
-    <>
+    <div className="side-box">
       {isOpen && <div className="overlay" onClick={closeMenu}></div>}
       <div className={`sidebar ${isOpen ? "open" : ""}`}>
-        <button className="addTask" onClick={handleShowCard}>
+        <button className="createTask" onClick={handleShowCard}>
           <FontAwesomeIcon icon={faPlus} />
           <span>Create</span>
         </button>
@@ -72,12 +72,12 @@ const Sidebar = ({
       </div>
       {showCard && (
         <Card
-          onClose={handleShowCard}
+          closeForm={handleShowCard}
           inputTask={inputTask}
           setInputTask={setInputTask}
         />
       )}
-    </>
+    </div>
   );
 };
 

@@ -1,3 +1,8 @@
+.side-box {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+}
 .sidebar {
   position: fixed;
   top: 64px;
@@ -14,20 +19,19 @@
 .sidebar.open {
   left: 0px;
 }
-.addTask {
+.createTask {
   align-self: flex-start;
   border: none;
-  outline: none;
   border-radius: 10px;
   background: #37393b;
   color: #e3e3e3;
-  padding: 10px 20px;
+  cursor: pointer;
   display: flex;
-  gap: 10px;
-  align-items: center;
   font-size: 14px;
   font-weight: 600;
-  cursor: pointer;
+  gap: 10px;
+  padding: 10px 20px;
+  outline: none;
 }
 .tasks {
   display: flex;

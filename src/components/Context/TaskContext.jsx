@@ -9,6 +9,7 @@ export const TaskProvider = ({ children }) => {
   });
   const [active, setActive] = useState("all");
   const [tasks, setTasks] = useState([]);
+  const [countId, setCountId] = useState(1);
 
   return (
     <TaskContext.Provider
@@ -19,6 +20,8 @@ export const TaskProvider = ({ children }) => {
         setActive,
         tasks,
         setTasks,
+        countId,
+        setCountId,
       }}
     >
       {children}
