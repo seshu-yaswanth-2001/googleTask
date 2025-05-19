@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 import Sidebar from "./Sidebar";
 import Menu from "./Menu";
+import "./nav.css";
 
 const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);

@@ -4,6 +4,7 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 import Card from "../Card/Card";
 import { TaskContext } from "../Context/TaskContext";
+import "./sidebar.css";
 
 const Sidebar = ({
   isOpen,
