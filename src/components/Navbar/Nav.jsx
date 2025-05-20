@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import Sidebar from "./Sidebar";
 import Menu from "./Menu";
@@ -6,7 +6,6 @@ import "./nav.css";
 
 const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [showCard, setShowCard] = useState(false);
 
   return (
     <>
@@ -16,12 +15,7 @@ const Nav = () => {
           <span>SK</span>
         </div>
       </nav>
-      <Sidebar
-        isOpen={isOpen}
-        setIsOpen={setIsOpen}
-        showCard={showCard}
-        setShowCard={setShowCard}
-      />
+      <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
     </>
   );
 };

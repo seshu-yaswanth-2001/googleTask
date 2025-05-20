@@ -10,6 +10,7 @@ export const TaskProvider = ({ children }) => {
   const [active, setActive] = useState("all");
   const [tasks, setTasks] = useState([]);
   const [countId, setCountId] = useState(1);
+  const [isFormOpen, setIsFormOpen] = useState(false);
 
   return (
     <TaskContext.Provider
@@ -22,6 +23,8 @@ export const TaskProvider = ({ children }) => {
         setTasks,
         countId,
         setCountId,
+        isFormOpen,
+        setIsFormOpen,
       }}
     >
       {children}

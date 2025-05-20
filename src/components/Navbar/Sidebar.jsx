@@ -2,19 +2,13 @@ import { useEffect, useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
-import Card from "../Card/Card";
+import Card from "../FormCard/Card";
 import { TaskContext } from "../Context/TaskContext";
 import "./sidebar.css";
 
-const Sidebar = ({
-  isOpen,
-  setIsOpen,
-  showCard,
-  setShowCard,
-  inputTask,
-  setInputTask,
-}) => {
-  const { active, setActive } = useContext(TaskContext);
+const Sidebar = ({ isOpen, setIsOpen }) => {
+  const { active, setActive, isFormOpen, setIsFormOpen } =
+    useContext(TaskContext);
   const closeMenu = () => setIsOpen(false);
 
   useEffect(() => {
@@ -28,7 +22,9 @@ const Sidebar = ({
   }, []);
 
   const handleShowCard = () => {
-    setShowCard(!showCard);
+    if (!isFormOpen) {
+      setIsFormOpen(true);
+    }
     closeMenu();
   };
 
@@ -70,13 +66,6 @@ const Sidebar = ({
           </button>
         </div>
       </div>
-      {showCard && (
-        <Card
-          closeForm={handleShowCard}
-          inputTask={inputTask}
-          setInputTask={setInputTask}
-        />
-      )}
     </div>
   );
 };

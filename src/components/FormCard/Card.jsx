@@ -4,9 +4,16 @@ import Form from "./Form/Form";
 
 import "./card.css";
 
-const Card = ({ closeForm }) => {
-  const { inputTask, setInputTask, tasks, setTasks, countId, setCountId } =
-    useContext(TaskContext);
+const Card = () => {
+  const {
+    inputTask,
+    setInputTask,
+    tasks,
+    setTasks,
+    countId,
+    setCountId,
+    setIsFormOpen,
+  } = useContext(TaskContext);
 
   useEffect(() => {
     const handlePress = (e) => {
@@ -33,10 +40,9 @@ const Card = ({ closeForm }) => {
       setTasks((prevTasks) => [...prevTasks, newTask]);
       setInputTask({ title: "", description: "" });
       setCountId(countId + 1);
-      closeForm();
+      setIsFormOpen(false);
     }
   };
-
   useEffect(() => {
     const storedTasks = JSON.parse(localStorage.getItem("tasks"));
     if (storedTasks) {
