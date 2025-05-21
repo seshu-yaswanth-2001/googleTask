@@ -4,14 +4,16 @@ import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 
 import "./Form.css";
 import addTask from "../../../assets/addTask.svg";
-import Form from "../Form/Form";
 import { TaskContext } from "../../Context/TaskContext";
 
 const BodyForm = () => {
-  const { isFormOpen, setIsFormOpen } = useContext(TaskContext);
+  const { state, setState } = useContext(TaskContext);
 
   const createTask = () => {
-    setIsFormOpen(true);
+    setState((prev) => ({
+      ...prev,
+      isFormOpen: true,
+    }));
   };
 
   return (
@@ -27,11 +29,11 @@ const BodyForm = () => {
         </div>
       </div>
       <div className="smallScreensForm">
-        <button className="taskButton">
+        <button className="taskButton" onClick={createTask}>
           <FontAwesomeIcon className="icon" icon={faCircleCheck} />
           Add a Task
         </button>
-        <div className="imageWrapper" onClick={createTask}>
+        <div className="imageWrapper">
           <img className="taskImg" src={addTask} alt="taskImg" />
           <p className="taskText">Add a task and be productive</p>
         </div>

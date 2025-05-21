@@ -5,21 +5,27 @@ import "./app.css";
 import Nav from "./components/Navbar/Nav";
 import BodyForm from "./components/FormCard/BodyForm/BodyForm";
 import Card from "./components/FormCard/Card";
+import ShowTasks from "./components/ShowTasks/ShowTasks.";
 
 const AppContent = () => {
-  const { isFormOpen } = useContext(TaskContext);
+  const { state, setState } = useContext(TaskContext);
   return (
     <>
       <Nav />
-      {!isFormOpen && <BodyForm />}
-      {isFormOpen && <Card />}
+      {state.isFormOpen ? (
+        <Card />
+      ) : state.tasks.length === 0 ? (
+        <BodyForm />
+      ) : (
+        <ShowTasks />
+      )}
     </>
   );
 };
 
 const App = () => {
   return (
-    <div>
+    <div className="app">
       <TaskProvider>
         <AppContent />
       </TaskProvider>

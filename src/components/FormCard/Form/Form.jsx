@@ -2,23 +2,31 @@ import { useContext } from "react";
 import { TaskContext } from "../../Context/TaskContext";
 
 const Form = ({ handleSubmit }) => {
-  const { inputTask, setInputTask } = useContext(TaskContext);
+  const { state, setState } = useContext(TaskContext);
   return (
     <>
       <input
         className="titleInput"
         type="text"
         placeholder="title"
-        value={inputTask.title}
-        onChange={(e) => setInputTask({ ...inputTask, title: e.target.value })}
+        value={state.title}
+        onChange={(e) =>
+          setState((prev) => ({
+            ...prev,
+            title: e.target.value,
+          }))
+        }
       />
       <textarea
         className="description"
         rows="2"
         placeholder="description"
-        value={inputTask.description}
+        value={state.description}
         onChange={(e) =>
-          setInputTask({ ...inputTask, description: e.target.value })
+          setState((prev) => ({
+            ...prev,
+            description: e.target.value,
+          }))
         }
       ></textarea>
       <button className="addTask" onClick={handleSubmit}>

@@ -6,7 +6,7 @@
   position: fixed;
   top: 64px;
   left: -230px;
-  width: 200px;
+  width: 220px;
   height: 100vh;
   padding: 20px;
   display: flex;
@@ -55,4 +55,25 @@
 }
 .taskButton.active {
   background: #004a77;
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+@media (max-width: 600px) {
+  .overlay {
+    background: rgba(0, 0, 0, 1);
+    transition: background 0.3s ease-in-out;
+  }
+  .sidebar {
+    left: 100%;
+    width: 100%;
+    transition: left 0.3s ease-in-out;
+    margin-top: 60px;
+  }
+  .createTask {
+    align-self: normal;
+  }
 }

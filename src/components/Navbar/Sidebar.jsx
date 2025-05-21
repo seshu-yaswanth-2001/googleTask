@@ -7,8 +7,7 @@ import { TaskContext } from "../Context/TaskContext";
 import "./sidebar.css";
 
 const Sidebar = ({ isOpen, setIsOpen }) => {
-  const { active, setActive, isFormOpen, setIsFormOpen } =
-    useContext(TaskContext);
+  const { state, setState } = useContext(TaskContext);
   const closeMenu = () => setIsOpen(false);
 
   useEffect(() => {
@@ -22,8 +21,11 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
   }, []);
 
   const handleShowCard = () => {
-    if (!isFormOpen) {
-      setIsFormOpen(true);
+    if (!state.isFormOpen) {
+      setState((prev) => ({
+        ...prev,
+        isFormOpen: true,
+      }));
     }
     closeMenu();
   };
@@ -38,27 +40,40 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
         </button>
         <div className="tasks">
           <button
-            className={`taskButton ${active === "all" ? "active" : ""}`}
+            className={`taskButton ${state.active === "all" ? "active" : ""}`}
             onClick={() => {
-              setActive("all");
+              setState((prev) => ({
+                ...prev,
+                active: "all",
+              }));
               closeMenu();
             }}
           >
             All tasks
           </button>
           <button
-            className={`taskButton ${active === "starred" ? "active" : ""}`}
+            className={`taskButton ${
+              state.active === "starred" ? "active" : ""
+            }`}
             onClick={() => {
-              setActive("starred");
+              setState((prev) => ({
+                ...prev,
+                active: "starred",
+              }));
               closeMenu();
             }}
           >
             Starred
           </button>
           <button
-            className={`taskButton ${active === "delete" ? "active" : ""}`}
+            className={`taskButton ${
+              state.active === "delete" ? "active" : ""
+            }`}
             onClick={() => {
-              setActive("delete");
+              setState((prev) => ({
+                ...prev,
+                active: "delete",
+              }));
               closeMenu();
             }}
           >

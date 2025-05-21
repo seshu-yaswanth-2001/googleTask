@@ -5,19 +5,11 @@ import Form from "./Form/Form";
 import "./card.css";
 
 const Card = () => {
-  const {
-    inputTask,
-    setInputTask,
-    tasks,
-    setTasks,
-    countId,
-    setCountId,
-    setIsFormOpen,
-  } = useContext(TaskContext);
+  const { state, setState } = useContext(TaskContext);
 
   useEffect(() => {
     const handlePress = (e) => {
-      if (e.key === "Enter" && inputTask.title && inputTask.description) {
+      if (e.key === "Enter" && state.title && state.description) {
         handleSubmit();
       }
     };
@@ -25,34 +17,30 @@ const Card = () => {
     return () => {
       document.removeEventListener("keydown", handlePress);
     };
-  }, [inputTask]);
+  }, [state.title, state.description]);
 
   const handleSubmit = () => {
-    if (inputTask.title && inputTask.description) {
+    if (state.title && state.description) {
+      const newId = state.countId;
       const date = new Date(Date.now());
       const newTask = {
-        id: countId,
+        id: newId,
         dateCreated: `${date.getFullYear()}/${String(
           date.getMonth() + 1
         ).padStart(2, "0")}/${String(date.getDate()).padStart(2, "0")}`,
-        ...inputTask,
+        title: state.title,
+        description: state.description,
       };
-      setTasks((prevTasks) => [...prevTasks, newTask]);
-      setInputTask({ title: "", description: "" });
-      setCountId(countId + 1);
-      setIsFormOpen(false);
+      setState((prev) => ({
+        ...prev,
+        tasks: [...prev.tasks, newTask],
+        title: "",
+        description: "",
+        countId: prev.countId + 1,
+        isFormOpen: false,
+      }));
     }
   };
-  useEffect(() => {
-    const storedTasks = JSON.parse(localStorage.getItem("tasks"));
-    if (storedTasks) {
-      setTasks(storedTasks);
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-  }, [tasks]);
 
   return (
     <div className="form">
