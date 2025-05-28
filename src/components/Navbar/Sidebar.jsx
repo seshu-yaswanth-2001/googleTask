@@ -2,7 +2,6 @@ import { useEffect, useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
-import Card from "../FormCard/Card";
 import { TaskContext } from "../Context/TaskContext";
 import "./sidebar.css";
 
@@ -64,20 +63,6 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
             }}
           >
             Starred
-          </button>
-          <button
-            className={`taskButton ${
-              state.active === "delete" ? "active" : ""
-            }`}
-            onClick={() => {
-              setState((prev) => ({
-                ...prev,
-                active: "delete",
-              }));
-              closeMenu();
-            }}
-          >
-            Deleted
           </button>
         </div>
       </div>

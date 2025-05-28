@@ -4,7 +4,10 @@ export const TaskContext = createContext();
 
 export const TaskProvider = ({ children }) => {
   const [state, setState] = useState(() => {
-    const storedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    const storedTasks = JSON.parse(localStorage.getItem("tasks") || "[]");
+    const storedStartTasks = JSON.parse(
+      localStorage.getItem("starTasks") || "[]"
+    );
     return {
       title: "",
       description: "",
@@ -14,6 +17,7 @@ export const TaskProvider = ({ children }) => {
         ? storedTasks[storedTasks.length - 1].id + 1
         : 1,
       isFormOpen: false,
+      starTasks: storedStartTasks,
     };
   });
 
@@ -22,8 +26,12 @@ export const TaskProvider = ({ children }) => {
   }, [state.tasks]);
 
   useEffect(() => {
-    console.log(state.tasks);
-  }, [state.tasks]);
+    localStorage.setItem("starTasks", JSON.stringify(state.starTasks));
+  }, [state.starTasks]);
+
+  useEffect(() => {
+    console.log(state.starTasks);
+  }, [state.starTasks]);
 
   return (
     <TaskContext.Provider

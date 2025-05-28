@@ -46,14 +46,10 @@
   font-size: 22px;
   font-weight: 500;
 }
-.profile {
-  border: 2px solid #e3e3e3;
-  padding: 10px;
-  border-radius: 50%;
+.rightFloat {
+  display: flex;
 }
-.profile span {
-  font-weight: 600;
-}
+
 @media (max-width: 600px) {
   .menu {
     gap: 5px;
@@ -72,13 +68,5 @@
   .mobileLogoText {
     font-size: 20px;
     font-weight: 600;
-  }
-  .profile {
-    border: 2px solid #e3e3e3;
-    padding: 5px 8px;
-    border-radius: 50%;
-  }
-  .profile span {
-    font-size: 12px;
   }
 }

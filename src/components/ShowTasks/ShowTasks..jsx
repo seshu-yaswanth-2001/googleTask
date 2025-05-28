@@ -5,64 +5,50 @@ import "./showTask.css";
 
 const ShowTasks = () => {
   const { state, setState } = useContext(TaskContext);
+
+  const handleDelete = (id) => {
+    const updateTasks = state.tasks.filter((task) => task.id !== id);
+    const starTasks = state.starTasks.filter((task) => task.id !== id);
+    setState((prev) => ({
+      ...prev,
+      tasks: updateTasks,
+      starTasks: starTasks,
+    }));
+  };
+
+  const handleStar = (id) => {
+    const toStarTask = state.tasks.find((task) => task.id === id);
+    const removeStarTask = state.starTasks.some((task) => task.id === id);
+
+    setState((prev) => ({
+      ...prev,
+      starTasks: removeStarTask
+        ? prev.starTasks.filter((task) => task.id !== id)
+        : [...prev.starTasks, toStarTask],
+    }));
+  };
+
   return (
     <div className="showTasks">
-      <div className="task">
-        <div className="taskTools">
-          <span>16/09/2024</span>
-          <span>Delete</span>
+      {state.tasks.map((task) => (
+        <div key={task.id} className="task">
+          <div className="taskTools">
+            <span>{task.dateCreated}</span>
+            <span
+              onClick={() => handleDelete(task.id)}
+              className="deleteButton"
+            >
+              Delete
+            </span>
+            <span onClick={() => handleStar(task.id)}>Star</span>
+          </div>
+          <hr />
+          <div className="taskData">
+            <h4 className="taskTitle">{task.title}</h4>
+            <p className="taskDescription">{task.description}</p>
+          </div>
         </div>
-        <div className="taskData">
-          <h4 className="taskTitle">title</h4>
-          <p className="taskDescription">
-            When you clear your cache and cookies, your browser might sign you
-            out of your Google Account. To make sure you can sign back in,
-            update your recovery phone number and email address.
-          </p>
-        </div>
-      </div>
-      <div className="task">
-        <div className="taskTools">
-          <span>16/09/2024</span>
-          <span>Delete</span>
-        </div>
-        <div className="taskData">
-          <h4 className="taskTitle">title</h4>
-          <p className="taskDescription">
-            When you clear your cache and cookies, your browser might sign you
-            out of your Google Account. To make sure you can sign back in,
-            update your recovery phone number and email address.
-          </p>
-        </div>
-      </div>
-      <div className="task">
-        <div className="taskTools">
-          <span>16/09/2024</span>
-          <span>Delete</span>
-        </div>
-        <div className="taskData">
-          <h4 className="taskTitle">title</h4>
-          <p className="taskDescription">
-            When you clear your cache and cookies, your browser might sign you
-            out of your Google Account. To make sure you can sign back in,
-            update your recovery phone number and email address.
-          </p>
-        </div>
-      </div>
-      <div className="task">
-        <div className="taskTools">
-          <span>16/09/2024</span>
-          <span>Delete</span>
-        </div>
-        <div className="taskData">
-          <h4 className="taskTitle">title</h4>
-          <p className="taskDescription">
-            When you clear your cache and cookies, your browser might sign you
-            out of your Google Account. To make sure you can sign back in,
-            update your recovery phone number and email address.
-          </p>
-        </div>
-      </div>
+      ))}
     </div>
   );
 };

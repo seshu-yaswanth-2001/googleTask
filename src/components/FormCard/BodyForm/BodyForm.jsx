@@ -7,7 +7,7 @@ import addTask from "../../../assets/addTask.svg";
 import { TaskContext } from "../../Context/TaskContext";
 
 const BodyForm = () => {
-  const { state, setState } = useContext(TaskContext);
+  const { setState } = useContext(TaskContext);
 
   const createTask = () => {
     setState((prev) => ({
@@ -19,7 +19,7 @@ const BodyForm = () => {
   return (
     <>
       <div className="bigScreensForm">
-        <button className="taskButton" onClick={createTask}>
+        <button className="bodyTaskButton" onClick={createTask}>
           <FontAwesomeIcon className="icon" icon={faCircleCheck} />
           Add a task
         </button>
@@ -29,7 +29,7 @@ const BodyForm = () => {
         </div>
       </div>
       <div className="smallScreensForm">
-        <button className="taskButton" onClick={createTask}>
+        <button className="bodyTaskButton" onClick={createTask}>
           <FontAwesomeIcon className="icon" icon={faCircleCheck} />
           Add a Task
         </button>

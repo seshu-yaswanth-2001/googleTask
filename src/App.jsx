@@ -8,7 +8,7 @@ import Card from "./components/FormCard/Card";
 import ShowTasks from "./components/ShowTasks/ShowTasks.";
 
 const AppContent = () => {
-  const { state, setState } = useContext(TaskContext);
+  const { state } = useContext(TaskContext);
   return (
     <>
       <Nav />
@@ -19,6 +19,7 @@ const AppContent = () => {
       ) : (
         <ShowTasks />
       )}
+      
     </>
   );
 };
