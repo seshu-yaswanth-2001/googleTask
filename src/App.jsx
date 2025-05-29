@@ -5,7 +5,8 @@ import "./app.css";
 import Nav from "./components/Navbar/Nav";
 import BodyForm from "./components/FormCard/BodyForm/BodyForm";
 import Card from "./components/FormCard/Card";
-import ShowTasks from "./components/ShowTasks/ShowTasks.";
+import ShowAllTasks from "./components/ShowTasks/ShowAllTasks";
+import ShowStarTasks from "./components/ShowTasks/ShowStarTasks";
 
 const AppContent = () => {
   const { state } = useContext(TaskContext);
@@ -16,10 +17,11 @@ const AppContent = () => {
         <Card />
       ) : state.tasks.length === 0 ? (
         <BodyForm />
+      ) : state.active === "all" ? (
+        <ShowAllTasks />
       ) : (
-        <ShowTasks />
+        <ShowStarTasks />
       )}
-      
     </>
   );
 };

@@ -1,9 +1,7 @@
 import { useContext } from "react";
 import { TaskContext } from "../Context/TaskContext";
 
-import "./showTask.css";
-
-const ShowTasks = () => {
+const Tasks = () => {
   const { state, setState } = useContext(TaskContext);
 
   const handleDelete = (id) => {
@@ -30,7 +28,7 @@ const ShowTasks = () => {
 
   return (
     <div className="showTasks">
-      {state.tasks.map((task) => (
+      {(state.active === "all" ? state.tasks : state.starTasks).map((task) => (
         <div key={task.id} className="task">
           <div className="taskTools">
             <span>{task.dateCreated}</span>
@@ -53,4 +51,4 @@ const ShowTasks = () => {
   );
 };
 
-export default ShowTasks;
+export default Tasks;

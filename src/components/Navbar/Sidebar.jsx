@@ -28,6 +28,20 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
     }
     closeMenu();
   };
+  const handleAll = () => {
+    setState((prev) => ({
+      ...prev,
+      active: "all",
+    }));
+    closeMenu();
+  };
+  const handleStarTasks = () => {
+    setState((prev) => ({
+      ...prev,
+      active: "starred",
+    }));
+    closeMenu();
+  };
 
   return (
     <div className="side-box">
@@ -40,13 +54,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
         <div className="tasks">
           <button
             className={`taskButton ${state.active === "all" ? "active" : ""}`}
-            onClick={() => {
-              setState((prev) => ({
-                ...prev,
-                active: "all",
-              }));
-              closeMenu();
-            }}
+            onClick={handleAll}
           >
             All tasks
           </button>
@@ -54,13 +62,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
             className={`taskButton ${
               state.active === "starred" ? "active" : ""
             }`}
-            onClick={() => {
-              setState((prev) => ({
-                ...prev,
-                active: "starred",
-              }));
-              closeMenu();
-            }}
+            onClick={handleStarTasks}
           >
             Starred
           </button>
