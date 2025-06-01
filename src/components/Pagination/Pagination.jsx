@@ -8,6 +8,14 @@ const Pagination = () => {
   const totalPages = Math.ceil(state.tasks.length / state.taskPerPage);
   const totalStarPages = Math.ceil(state.starTasks.length / state.taskPerPage);
 
+  if (state.active === "all" && state.tasks.length <= 4) {
+    return null;
+  }
+
+  if (state.active === "starred" && state.starTasks.length <= 4) {
+    return null;
+  }
+
   const pages = [];
 
   for (
@@ -33,8 +41,9 @@ const Pagination = () => {
           onClick={() =>
             setState((prev) => ({
               ...prev,
-              currentPage: page,
-              currentPageStar: page,
+              ...(state.active === "all"
+                ? { currentPage: page }
+                : { currentPageStar: page }),
             }))
           }
         >
