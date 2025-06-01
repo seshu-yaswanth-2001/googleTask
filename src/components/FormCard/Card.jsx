@@ -9,18 +9,6 @@ import "./card.css";
 const Card = () => {
   const { state, setState } = useContext(TaskContext);
 
-  useEffect(() => {
-    const handlePress = (e) => {
-      if (e.key === "Enter" && state.title && state.description) {
-        handleSubmit();
-      }
-    };
-    document.addEventListener("keydown", handlePress);
-    return () => {
-      document.removeEventListener("keydown", handlePress);
-    };
-  }, [state.title, state.description]);
-
   const handleSubmit = () => {
     if (state.title && state.description) {
       const newId = state.countId;
@@ -43,6 +31,17 @@ const Card = () => {
       }));
     }
   };
+  useEffect(() => {
+    const handlePress = (e) => {
+      if (e.key === "Enter" && state.title && state.description) {
+        handleSubmit();
+      }
+    };
+    document.addEventListener("keydown", handlePress);
+    return () => {
+      document.removeEventListener("keydown", handlePress);
+    };
+  }, [state.title, state.description]);
 
   const handleback = () => {
     setState((prev) => ({

@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 
-import "./Form.css";
+import "./form.css";
 import addTask from "../../../assets/addTask.svg";
 import { TaskContext } from "../../Context/TaskContext";
 

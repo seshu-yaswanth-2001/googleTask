@@ -8,7 +8,7 @@ const Pagination = () => {
   const totalPages = Math.ceil(state.tasks.length / state.taskPerPage);
   const totalStarPages = Math.ceil(state.starTasks.length / state.taskPerPage);
 
-  let pages = [];
+  const pages = [];
 
   for (
     let i = 1;
