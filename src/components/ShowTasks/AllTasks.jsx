@@ -9,7 +9,6 @@ const Tasks = () => {
   const { state, setState } = useContext(TaskContext);
 
   const lastIndex = state.currentPage * state.taskPerPage;
-  const lastStarIndex = state.currentStarPage * state.taskPerPage;
   const firstIndex = lastIndex - state.taskPerPage;
   const currentTasks = state.tasks.slice(firstIndex, lastIndex);
   const currentTasksStar = state.starTasks.slice(firstIndex, lastIndex);

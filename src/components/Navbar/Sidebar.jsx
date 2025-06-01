@@ -29,20 +29,6 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
     }
     closeMenu();
   };
-  const handleAll = () => {
-    setState((prev) => ({
-      ...prev,
-      active: "all",
-    }));
-    closeMenu();
-  };
-  const handleStarTasks = () => {
-    setState((prev) => ({
-      ...prev,
-      active: "starred",
-    }));
-    closeMenu();
-  };
 
   return (
     <div className="side-box">
