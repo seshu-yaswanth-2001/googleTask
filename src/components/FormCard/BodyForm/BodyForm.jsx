@@ -28,16 +28,6 @@ const BodyForm = () => {
           <p className="taskText">Add a task and be productive</p>
         </div>
       </div>
-      <div className="smallScreensForm">
-        <button className="bodyTaskButton" onClick={createTask}>
-          <FontAwesomeIcon className="icon" icon={faCircleCheck} />
-          Add a Task
-        </button>
-        <div className="imageWrapper">
-          <img className="taskImg" src={addTask} alt="taskImg" />
-          <p className="taskText">Add a task and be productive</p>
-        </div>
-      </div>
     </>
   );
 };
