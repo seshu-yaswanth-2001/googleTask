@@ -1,12 +1,126 @@
-# React + Vite
+# 📝 Google Tasks Clone (Built with Vite + React)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A fast, lightweight task management app built using **Vite** and **React**. Add, prioritize, and organize tasks with a clean UI, persistent storage, and responsive design.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Expanding the ESLint configuration
+- 📌 Add tasks with title and description  
+- ⭐ Star/unstar tasks to mark importance  
+- 📂 View all or only starred tasks  
+- 📄 Pagination support  
+- 💾 Persistent data via `localStorage`  
+- 🧭 Sidebar toggle and contextual views  
+- 💻 Responsive design (mobile + desktop)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## ⚙️ Tech Stack
+
+- ⚡ [Vite](https://vitejs.dev/) – Lightning-fast build tool  
+- ⚛️ [React](https://react.dev/) – Functional components + hooks  
+- 🧠 Context API – Global state management  
+- 🎨 CSS + media queries – Custom styling  
+- 📦 LocalStorage – Task persistence
+
+---
+
+## 📁 Folder Structure
+
+```
+
+GOOGLETASKS/
+├── node_modules/
+├── public/
+├── src/
+│   ├── assets/
+│   │   ├── addTask.svg
+│   │   └── logo.svg
+│   ├── components/
+│   │   ├── Context/
+│   │   │   └── TaskContext.jsx
+│   │   ├── FormCard/
+│   │   │   ├── BodyForm/
+│   │   │   │   ├── BodyForm.jsx
+│   │   │   │   └── form.css
+│   │   │   └── Form/
+│   │   │       ├── Form.jsx
+│   │   │       └── form.css
+│   │   ├── Card.jsx
+│   │   ├── card.css
+│   │   ├── Navbar/
+│   │   │   ├── Menu.jsx
+│   │   │   ├── Nav.jsx
+│   │   │   ├── Sidebar.jsx
+│   │   │   ├── nav.css
+│   │   │   └── sidebar.css
+│   │   ├── Pagination/
+│   │   │   ├── Pagination.jsx
+│   │   │   └── pagination.css
+│   │   └── ShowTasks/
+│   │       ├── AllTasks.jsx
+│   │       ├── ShowAllTasks.jsx
+│   │       ├── ShowStarTasks.jsx
+│   │       └── allTasks.css
+│   ├── App.jsx
+│   ├── app.css
+│   ├── index.js
+├── .gitignore
+├── .deepsource.toml
+└── eslint.config.js
+
+````
+
+---
+
+## 🧑‍💻 Getting Started
+
+### 1. Clone the repo
+```bash
+git clone https://github.com/seshu-yaswanth-2001/googleTask.git
+````
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Start the development server
+
+```bash
+npm run dev
+```
+
+### 4. Open in browser
+
+Navigate to `http://localhost:5173` (or the port Vite tells you)
+
+---
+
+## 📦 Build for Production
+
+```bash
+npm run build
+```
+
+Then preview with:
+
+```bash
+npm run preview
+```
+
+---
+
+## 🔮 Planned Features
+
+* ✅ Task Creation
+* 🗑️ Task deletion
+
+---
+
+## 👨‍💻 Author
+
+Made with ❤️ by Seshu Yaswanth
+GitHub: https://github.com/seshu-yaswanth-2001
