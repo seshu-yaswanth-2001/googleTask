@@ -1,0 +1,20 @@
+version = 1
+
+[[analyzers]]
+name = "eslint"
+
+  [analyzers.config]
+  autofix = true
+  # If you have a custom ESLint config file, uncomment and set the path:
+  # config_file = ".eslintrc.json"
+
+  # Include typical React source folders (adjust if needed)
+  paths = ["src"]
+
+[[metrics]]
+name = "js_code_smells"
+enabled = true
+
+[[metrics]]
+name = "js_security"
+enabled = true
