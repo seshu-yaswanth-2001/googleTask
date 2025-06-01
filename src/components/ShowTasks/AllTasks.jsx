@@ -1,12 +1,19 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash, faStar } from "@fortawesome/free-solid-svg-icons";
+import {
+  faTrash,
+  faStar,
+  faPenSquare,
+} from "@fortawesome/free-solid-svg-icons";
 
 import { TaskContext } from "../Context/TaskContext";
 import "./allTasks.css";
 
 const Tasks = () => {
   const { state, setState } = useContext(TaskContext);
+  
+  const [editingTask, setEditingTask] = useState(null);
+  const [editForm, setEditForm] = useState({ title: "", description: "" });
 
   const lastIndex = state.currentPage * state.taskPerPage;
   const firstIndex = lastIndex - state.taskPerPage;
@@ -16,10 +23,16 @@ const Tasks = () => {
   const handleDelete = (id) => {
     const updateTasks = state.tasks.filter((task) => task.id !== id);
     const starTasks = state.starTasks.filter((task) => task.id !== id);
+
+    const totalPages = Math.ceil(updateTasks.length / state.taskPerPage);
+    const currentPage =
+      state.currentPage > totalPages ? totalPages : state.currentPage;
+
     setState((prev) => ({
       ...prev,
       tasks: updateTasks,
       starTasks: starTasks,
+      currentPage: currentPage || 1,
     }));
   };
 
@@ -35,6 +48,36 @@ const Tasks = () => {
     }));
   };
 
+  const handleEdit = (task) => {
+    setEditingTask(task.id);
+    setEditForm({ title: task.title, description: task.description });
+  };
+
+  const handleSaveEdit = (id) => {
+    const updatedTasks = state.tasks.map((task) =>
+      task.id === id
+        ? { ...task, title: editForm.title, description: editForm.description }
+        : task
+    );
+    const updatedStarTasks = state.starTasks.map((task) =>
+      task.id === id
+        ? { ...task, title: editForm.title, description: editForm.description }
+        : task
+    );
+
+    setState((prev) => ({
+      ...prev,
+      tasks: updatedTasks,
+      starTasks: updatedStarTasks,
+    }));
+    setEditingTask(null);
+  };
+
+  const handleCancelEdit = () => {
+    setEditingTask(null);
+    setEditForm({ title: "", description: "" });
+  };
+
   return (
     <div className="showTasks">
       {(state.active === "all" ? currentTasks : currentTasksStar).map(
@@ -43,6 +86,9 @@ const Tasks = () => {
             <div className="taskTools">
               <span className="date">{task.dateCreated}</span>
               <div className="tools">
+                <span className="pencil" onClick={() => handleEdit(task)}>
+                  <FontAwesomeIcon icon={faPenSquare} />
+                </span>
                 <span
                   onClick={() => handleDelete(task.id)}
                   className="deleteButton"
@@ -63,8 +109,36 @@ const Tasks = () => {
             </div>
             <hr />
             <div className="taskData">
-              <h4 className="taskTitle">{task.title}</h4>
-              <p className="taskDescription">{task.description}</p>
+              {editingTask === task.id ? (
+                <div className="edit-form">
+                  <input
+                    type="text"
+                    value={editForm.title}
+                    onChange={(e) =>
+                      setEditForm({ ...editForm, title: e.target.value })
+                    }
+                    className="edit-title"
+                  />
+                  <textarea
+                    value={editForm.description}
+                    onChange={(e) =>
+                      setEditForm({ ...editForm, description: e.target.value })
+                    }
+                    className="edit-description"
+                  />
+                  <div className="edit-buttons">
+                    <button onClick={() => handleSaveEdit(task.id)}>
+                      Save
+                    </button>
+                    <button onClick={handleCancelEdit}>Cancel</button>
+                  </div>
+                </div>
+              ) : (
+                <>
+                  <h4 className="taskTitle">{task.title}</h4>
+                  <p className="taskDescription">{task.description}</p>
+                </>
+              )}
             </div>
           </div>
         )
