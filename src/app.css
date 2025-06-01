@@ -12,3 +12,8 @@ body {
   font-family: "Georama", sans-serif;
   margin: 20px;
 }
+
+.noStarTasks {
+  text-align: center;
+  margin-top: 50px;
+}

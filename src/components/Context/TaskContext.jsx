@@ -8,6 +8,10 @@ export const TaskProvider = ({ children }) => {
     const storedStartTasks = JSON.parse(
       localStorage.getItem("starTasks") || "[]"
     );
+
+    const currentPage = 1;
+    const taskPerPage = 4;
+    const currentPageStar = 4;
     return {
       title: "",
       description: "",
@@ -18,6 +22,9 @@ export const TaskProvider = ({ children }) => {
         : 1,
       isFormOpen: false,
       starTasks: storedStartTasks,
+      currentPage,
+      taskPerPage,
+      currentPageStar,
     };
   });
 
@@ -27,10 +34,6 @@ export const TaskProvider = ({ children }) => {
 
   useEffect(() => {
     localStorage.setItem("starTasks", JSON.stringify(state.starTasks));
-  }, [state.starTasks]);
-
-  useEffect(() => {
-    console.log(state.starTasks);
   }, [state.starTasks]);
 
   return (

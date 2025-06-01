@@ -1,4 +1,4 @@
-import "./ShowAllTask.css";
+
 import Tasks from "./AllTasks";
 
 const ShowAllTasks = () => {

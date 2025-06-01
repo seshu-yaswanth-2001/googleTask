@@ -4,6 +4,7 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 import { TaskContext } from "../Context/TaskContext";
 import "./sidebar.css";
+import { Link } from "react-router-dom";
 
 const Sidebar = ({ isOpen, setIsOpen }) => {
   const { state, setState } = useContext(TaskContext);
@@ -52,20 +53,34 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
           <span>Create</span>
         </button>
         <div className="tasks">
-          <button
-            className={`taskButton ${state.active === "all" ? "active" : ""}`}
-            onClick={handleAll}
+          <Link
+            to="/"
+            onClick={() => {
+              setState((prev) => ({ ...prev, active: "all" }));
+              closeMenu();
+            }}
           >
-            All tasks
-          </button>
-          <button
-            className={`taskButton ${
-              state.active === "starred" ? "active" : ""
-            }`}
-            onClick={handleStarTasks}
+            <button
+              className={`taskButton ${state.active === "all" ? "active" : ""}`}
+            >
+              All tasks
+            </button>
+          </Link>
+          <Link
+            to="/starred"
+            onClick={() => {
+              setState((prev) => ({ ...prev, active: "starred" }));
+              closeMenu();
+            }}
           >
-            Starred
-          </button>
+            <button
+              className={`taskButton ${
+                state.active === "starred" ? "active" : ""
+              }`}
+            >
+              Starred
+            </button>
+          </Link>
         </div>
       </div>
     </div>

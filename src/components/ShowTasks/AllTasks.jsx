@@ -1,8 +1,18 @@
 import { useContext } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash, faStar } from "@fortawesome/free-solid-svg-icons";
+
 import { TaskContext } from "../Context/TaskContext";
+import "./allTasks.css";
 
 const Tasks = () => {
   const { state, setState } = useContext(TaskContext);
+
+  const lastIndex = state.currentPage * state.taskPerPage;
+  const lastStarIndex = state.currentStarPage * state.taskPerPage;
+  const firstIndex = lastIndex - state.taskPerPage;
+  const currentTasks = state.tasks.slice(firstIndex, lastIndex);
+  const currentTasksStar = state.starTasks.slice(firstIndex, lastIndex);
 
   const handleDelete = (id) => {
     const updateTasks = state.tasks.filter((task) => task.id !== id);
@@ -28,25 +38,38 @@ const Tasks = () => {
 
   return (
     <div className="showTasks">
-      {(state.active === "all" ? state.tasks : state.starTasks).map((task) => (
-        <div key={task.id} className="task">
-          <div className="taskTools">
-            <span>{task.dateCreated}</span>
-            <span
-              onClick={() => handleDelete(task.id)}
-              className="deleteButton"
-            >
-              Delete
-            </span>
-            <span onClick={() => handleStar(task.id)}>Star</span>
+      {(state.active === "all" ? currentTasks : currentTasksStar).map(
+        (task) => (
+          <div key={task.id} className="task">
+            <div className="taskTools">
+              <span className="date">{task.dateCreated}</span>
+              <div className="tools">
+                <span
+                  onClick={() => handleDelete(task.id)}
+                  className="deleteButton"
+                >
+                  <FontAwesomeIcon icon={faTrash} />
+                </span>
+                <span
+                  className={`star ${
+                    state.starTasks.some((t) => t.id === task.id)
+                      ? "selected"
+                      : ""
+                  }`}
+                  onClick={() => handleStar(task.id)}
+                >
+                  <FontAwesomeIcon icon={faStar} />
+                </span>
+              </div>
+            </div>
+            <hr />
+            <div className="taskData">
+              <h4 className="taskTitle">{task.title}</h4>
+              <p className="taskDescription">{task.description}</p>
+            </div>
           </div>
-          <hr />
-          <div className="taskData">
-            <h4 className="taskTitle">{task.title}</h4>
-            <p className="taskDescription">{task.description}</p>
-          </div>
-        </div>
-      ))}
+        )
+      )}
     </div>
   );
 };

@@ -1,4 +1,6 @@
 import { useContext, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons/faArrowLeft";
 import { TaskContext } from "../Context/TaskContext";
 import Form from "./Form/Form";
 
@@ -42,8 +44,18 @@ const Card = () => {
     }
   };
 
+  const handleback = () => {
+    setState((prev) => ({
+      ...prev,
+      isFormOpen: false,
+    }));
+  };
+
   return (
     <div className="form">
+      <span className="back" onClick={handleback}>
+        <FontAwesomeIcon icon={faArrowLeft} /> back
+      </span>
       <Form handleSubmit={handleSubmit} />
     </div>
   );
