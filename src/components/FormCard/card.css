@@ -20,7 +20,6 @@
   border-radius: 7px;
   padding: 10px;
   cursor: pointer;
-
 }
 .back:hover {
   background-color: #37393b;
@@ -66,7 +65,12 @@
 .addTask:hover {
   background: #45a049;
 }
-
+.error-text {
+  color: red;
+  font-size: 12px;
+  margin-top: -12px;
+  margin-left: 6px;
+}
 @media (max-width: 600px) {
   .form {
     width: 80%;
