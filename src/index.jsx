@@ -19,10 +19,10 @@ const router = createBrowserRouter([
         path: "starred",
         element: <ShowStarTasks />,
       },
-      // {
-      //   path: "empty",
-      //   element: <BodyForm />,
-      // },
+      {
+        path: "empty",
+        element: <BodyForm />,
+      },
     ],
   },
 ]);
