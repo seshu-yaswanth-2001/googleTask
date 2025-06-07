@@ -12,12 +12,12 @@ const AppContent = () => {
   const navigate = useNavigate();
   const location = useLocation();
   useEffect(() => {
-    if (!state.isFormOpen) {
-      if (state.tasks.length === 0 && location.pathname !== "/empty") {
-        navigate("/empty");
-      } else if (state.tasks.length > 0 && location.pathname === "/empty") {
-        navigate("/");
-      }
+    if (
+      !state.isFormOpen &&
+      state.tasks.length > 0 &&
+      location.pathname === "/unknown"
+    ) {
+      navigate("/");
     }
   }, [state.tasks.length, state.isFormOpen, location.pathname, navigate]);
 
