@@ -22,6 +22,10 @@ const Tasks = () => {
   const currentTasksStar = state.starTasks.slice(firstIndex, lastIndex);
 
   const handleDelete = (id) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this task?"
+    );
+    if (!confirmDelete) return; // If user clicks Cancel, stop here
     const updateTasks = state.tasks.filter((task) => task.id !== id);
     const starTasks = state.starTasks.filter((task) => task.id !== id);
 
