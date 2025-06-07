@@ -6,6 +6,7 @@ import "./app.css";
 import Nav from "./components/Navbar/Nav";
 import Card from "./components/FormCard/Card";
 import Pagination from "./components/Pagination/Pagination";
+import BodyForm from "./components/FormCard/BodyForm/BodyForm";
 
 const AppContent = () => {
   const { state } = useContext(TaskContext);
@@ -45,6 +46,7 @@ const AppContent = () => {
       )} */}
 
       {state.isFormOpen && <Card />}
+      {!state.isFormOpen && state.tasks.length === 0 && <BodyForm />}
       {!state.isFormOpen && <Outlet />}
       {!state.isFormOpen &&
         (state.active === "all" || state.active === "starred") && (
