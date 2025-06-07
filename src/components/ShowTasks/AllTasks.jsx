@@ -11,7 +11,7 @@ import "./allTasks.css";
 
 const Tasks = () => {
   const { state, setState } = useContext(TaskContext);
-  
+
   const [editingTask, setEditingTask] = useState(null);
   const [editForm, setEditForm] = useState({ title: "", description: "" });
 
@@ -78,6 +78,22 @@ const Tasks = () => {
     setEditForm({ title: "", description: "" });
   };
 
+  const handleCheck = (id) => {
+    const updatedTasks = state.tasks.map((task) =>
+      task.id === id ? { ...task, completed: !task.completed } : task
+    );
+
+    const updatedStarTasks = state.starTasks.map((task) =>
+      task.id === id ? { ...task, completed: !task.completed } : task
+    );
+
+    setState((prev) => ({
+      ...prev,
+      tasks: updatedTasks,
+      starTasks: updatedStarTasks,
+    }));
+  };
+
   return (
     <div className="showTasks">
       {(state.active === "all" ? currentTasks : currentTasksStar).map(
@@ -135,8 +151,13 @@ const Tasks = () => {
                 </div>
               ) : (
                 <>
-                  <h4 className="taskTitle">{task.title}</h4>
-                  <p className="taskDescription">{task.description}</p>
+                  <div
+                    className={task.completed ? "taskCompleted" : "deactive"}
+                    onClick={() => handleCheck(task.id)}
+                  >
+                    <h4 className="taskTitle">{task.title}</h4>
+                    <p className="taskDescription">{task.description}</p>
+                  </div>
                 </>
               )}
             </div>
