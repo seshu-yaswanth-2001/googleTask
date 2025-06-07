@@ -175,6 +175,11 @@ hr {
 .edit-buttons button:last-child:hover {
   background-color: #444;
 }
+.error-message {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 5px;
+}
 
 @media (max-width: 768px) {
   .showTasks {

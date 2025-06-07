@@ -14,6 +14,7 @@ const Tasks = () => {
 
   const [editingTask, setEditingTask] = useState(null);
   const [editForm, setEditForm] = useState({ title: "", description: "" });
+  const [editError, setEditError] = useState("");
 
   const lastIndex = state.currentPage * state.taskPerPage;
   const firstIndex = lastIndex - state.taskPerPage;
@@ -54,6 +55,11 @@ const Tasks = () => {
   };
 
   const handleSaveEdit = (id) => {
+    if (!editForm.title.trim() || !editForm.description.trim()) {
+      setEditError("Title and Description cannot be empty");
+      return;
+    }
+
     const updatedTasks = state.tasks.map((task) =>
       task.id === id
         ? { ...task, title: editForm.title, description: editForm.description }
@@ -70,7 +76,9 @@ const Tasks = () => {
       tasks: updatedTasks,
       starTasks: updatedStarTasks,
     }));
+
     setEditingTask(null);
+    setEditError("");
   };
 
   const handleCancelEdit = () => {
@@ -142,6 +150,7 @@ const Tasks = () => {
                     }
                     className="edit-description"
                   />
+                  {editError && <p className="error-message">{editError}</p>}
                   <div className="edit-buttons">
                     <button onClick={() => handleSaveEdit(task.id)}>
                       Save
