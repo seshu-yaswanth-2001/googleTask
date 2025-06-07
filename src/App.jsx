@@ -24,7 +24,7 @@ const AppContent = () => {
 
   return (
     <>
-      <Nav />
+      {/* <Nav /> */}
       {/* {state.isFormOpen ? (
         <Card />
       ) : state.tasks.length === 0 ? (
@@ -44,12 +44,17 @@ const AppContent = () => {
           )}
         </>
       )} */}
-
+      <Nav />
       {state.isFormOpen && <Card />}
-      {!state.isFormOpen && state.tasks.length === 0 && <BodyForm />}
-      {!state.isFormOpen && <Outlet />}
       {!state.isFormOpen &&
-        (state.active === "all" || state.active === "starred") && (
+        (location.pathname === "/" && state.tasks.length === 0 ? (
+          <BodyForm />
+        ) : (
+          <Outlet />
+        ))}
+      {!state.isFormOpen &&
+        (state.active === "all" || state.active === "starred") &&
+        (state.tasks.length > 0 || state.starTasks.length > 0) && (
           <Pagination />
         )}
     </>
