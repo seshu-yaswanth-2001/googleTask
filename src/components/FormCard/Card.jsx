@@ -33,7 +33,11 @@ const Card = () => {
   };
   useEffect(() => {
     const handlePress = (e) => {
-      if (e.key === "Enter" && state.title && state.description) {
+      if (
+        e.key === "Enter" &&
+        state.title.trim().length > 0 &&
+        state.description.trim().length > 0
+      ) {
         handleSubmit();
       }
     };

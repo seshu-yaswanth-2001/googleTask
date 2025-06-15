@@ -12,12 +12,12 @@ const Form = ({ handleSubmit }) => {
     let isValid = true;
     const newErrors = { title: "", desc: "" };
 
-    if (!state.title.trim()) {
+    if (!state.title.trim() && state.title.length > 0) {
       newErrors.title = "Title is required";
-      isValid = false;
+      isValid = false;``
     }
 
-    if (!state.description.trim()) {
+    if (!state.description.trim() && state.description.length > 0) {
       newErrors.desc = "Description is required";
       isValid = false;
     }
