@@ -16,12 +16,15 @@ const SocialShare = () => {
   const currentURL = window.location.href;
   const [copied, setCopied] = useState(false);
 
-  const pageUrl = encodeURIComponent(window.location.href);
+  const ogUrlMeta = document.querySelector('meta[property="og:url"]');
+  const canonicalShareUrl = ogUrlMeta?.content || window.location.origin;
+
+  const pageUrl = encodeURIComponent(canonicalShareUrl);
   const shareText = encodeURIComponent("Check this out!");
   const shareUrls = {
     facebook: `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`,
     linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${pageUrl}`,
-    whatsapp: `https://wa.me/?text=${shareText}%20${pageUrl}`,
+    whatsapp: `https://wa.me/?text=${pageUrl}%20${shareText}`,
     telegram: `https://t.me/share/url?url=${pageUrl}&text=${shareText}`,
     reddit: `https://www.reddit.com/submit?url=${pageUrl}&title=${shareText}`,
     email: `mailto:?subject=${shareText}&body=${pageUrl}`,
