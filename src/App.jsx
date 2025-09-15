@@ -2,12 +2,11 @@ import { useContext, useEffect } from "react";
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import { TaskContext, TaskProvider } from "./components/Context/TaskContext";
 
-// import "./app.css";
+import "./app.css";
 import Nav from "./components/Navbar/Nav";
 import Card from "./components/FormCard/Card";
 import Pagination from "./components/Pagination/Pagination";
 import BodyForm from "./components/FormCard/BodyForm/BodyForm";
-import SocialShare from "./components/socialShare/SocialShare";
 
 const AppContent = () => {
   const { state } = useContext(TaskContext);
@@ -63,17 +62,12 @@ const AppContent = () => {
 };
 
 const App = () => {
-  // return (
-  //   <div className="app">
-  //     <TaskProvider>
-  //       <AppContent />
-  //     </TaskProvider>
-  //   </div>
-  // );
   return (
-    <>
-      <SocialShare />
-    </>
+    <div className="app">
+      <TaskProvider>
+        <AppContent />
+      </TaskProvider>
+    </div>
   );
 };
 
