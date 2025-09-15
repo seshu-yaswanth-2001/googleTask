@@ -9,7 +9,7 @@ import {
   FaDiscord,
   FaLink,
 } from "react-icons/fa";
-
+import amz from "../../assets/image.png";
 import "./socialShare.css";
 
 const SocialShare = () => {
@@ -101,6 +101,7 @@ const SocialShare = () => {
           </button>
         </div>
       </div>
+      <img src={amz} alt="amz" />
     </div>
   );
 };
