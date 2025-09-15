@@ -7,7 +7,7 @@ import Nav from "./components/Navbar/Nav";
 import Card from "./components/FormCard/Card";
 import Pagination from "./components/Pagination/Pagination";
 import BodyForm from "./components/FormCard/BodyForm/BodyForm";
-import SocialShare from "./components/socialShare/socialShare";
+import SocialShare from "./components/socialShare/SocialShare";
 
 const AppContent = () => {
   const { state } = useContext(TaskContext);
